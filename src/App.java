@@ -6,6 +6,9 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 import java.util.Map;
+import java.net.URL;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 
 public class App {
@@ -24,9 +27,9 @@ public class App {
 
         // mockado para evitar o limite de uso da api original
         //final String url = "http://127.0.0.1:5000/mockapi/k_rg1s0lsu";
-        //final String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
+        final String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
 
-        final String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json";
+        //final String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json";
 
         // formatacao no terminal
         final String negrito = "\u001b[1m";
@@ -34,7 +37,7 @@ public class App {
 
         // emoji utilizado para mostrar o rating visualmente
         final String estrelaAmarela = "\u2B50";
-        final String estrelaBranca = "\u2B50";
+    
         
 
         URI endereco = URI.create(url);
@@ -56,7 +59,18 @@ public class App {
 
         for (Map<String,String> filme : listaDeFilmes) {
             System.out.println(negrito+"Título:"+semNegrito+" "+filme.get("title"));
+
+            String urlDaImagem = filme.get("image");
+
             System.out.println(negrito+"URL da Imagem:"+semNegrito+" "+filme.get("image"));
+
+            GeradoraDeFigurinhas geradora = new GeradoraDeFigurinhas();
+
+            InputStream inputStream = new URL(urlDaImagem).openStream();
+    
+            geradora.cria(inputStream, "saida/figurinha"+filme.get("title")+".jpg");
+          
+
             //System.out.println(filme.get("imDbRating"));
             for (int index = 0; index < (int)Float.parseFloat(filme.get("imDbRating")); index++) {
                 

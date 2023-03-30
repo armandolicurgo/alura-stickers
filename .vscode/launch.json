@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GeradoraDeFigurinhas",
+            "request": "launch",
+            "mainClass": "GeradoraDeFigurinhas",
+            "projectName": "alura-stickers-1_7e860af7"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
