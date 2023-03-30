@@ -58,24 +58,21 @@ public class App {
         // exibir e manipular os dados que desejar
 
         for (Map<String,String> filme : listaDeFilmes) {
-            System.out.println(negrito+"Título:"+semNegrito+" "+filme.get("title"));
 
+            String tituloDoFilme = filme.get("title");
             String urlDaImagem = filme.get("image");
 
-            System.out.println(negrito+"URL da Imagem:"+semNegrito+" "+filme.get("image"));
+            System.out.println(negrito+"URL da Imagem:"+semNegrito+" "+urlDaImagem);
+            System.out.println(negrito+"Título:"+semNegrito+" "+tituloDoFilme);
 
             GeradoraDeFigurinhas geradora = new GeradoraDeFigurinhas();
-
             InputStream inputStream = new URL(urlDaImagem).openStream();
     
-            geradora.cria(inputStream, "saida/figurinha"+filme.get("title")+".jpg");
+            geradora.cria(inputStream, "saida/"+tituloDoFilme+".png");
           
-
             //System.out.println(filme.get("imDbRating"));
-            for (int index = 0; index < (int)Float.parseFloat(filme.get("imDbRating")); index++) {
-                
+            for (int index = 0; index < (int)Float.parseFloat(filme.get("imDbRating")); index++) {                
                 System.out.print(estrelaAmarela);
-
             }
             System.out.println();            
         }
