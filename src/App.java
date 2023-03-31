@@ -56,16 +56,16 @@ public class App {
         List<Map<String, String>> listaDeFilmes = parser.parse(body);
 
         // exibir e manipular os dados que desejar
+        GeradoraDeFigurinhas geradora = new GeradoraDeFigurinhas();
 
         for (Map<String,String> filme : listaDeFilmes) {
 
             String tituloDoFilme = filme.get("title");
             String urlDaImagem = filme.get("image");
 
-            System.out.println(negrito+"URL da Imagem:"+semNegrito+" "+urlDaImagem);
+            //System.out.println(negrito+"URL da Imagem:"+semNegrito+" "+urlDaImagem);
             System.out.println(negrito+"Título:"+semNegrito+" "+tituloDoFilme);
 
-            GeradoraDeFigurinhas geradora = new GeradoraDeFigurinhas();
             InputStream inputStream = new URL(urlDaImagem).openStream();
     
             geradora.cria(inputStream, "saida/"+tituloDoFilme+".png");

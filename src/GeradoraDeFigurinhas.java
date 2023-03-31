@@ -25,7 +25,7 @@ public class GeradoraDeFigurinhas  {
         BufferedImage imagemOriginal = ImageIO.read(inputStream);
         int largura = imagemOriginal.getWidth();
         int altura = imagemOriginal.getHeight();
-        final int novaAltura = altura + 200;
+        final int novaAltura = (int)(altura * 1.2);
         BufferedImage novaImagem = new BufferedImage(largura, novaAltura, BufferedImage.TRANSLUCENT);
 
         // copiar a imagem original para nova imagem
@@ -33,13 +33,13 @@ public class GeradoraDeFigurinhas  {
         graphics.drawImage(imagemOriginal, 0,0, null);
 
         // configurar a fonted
-        var fonte = new Font(Font.SANS_SERIF, Font.BOLD, 32);
+        var fonte = new Font(Font.MONOSPACED, Font.BOLD, (int)largura/7);
         graphics.setFont(fonte);
 
 
         // escrever uma frase na nova imagem
-        graphics.drawString("TOPZERA",0,novaAltura-100);
         graphics.setColor(Color.YELLOW);
+        graphics.drawString("  TOPZERA",0,novaAltura-100);
 
 
         // escrever a imagem nova em um arquivo
