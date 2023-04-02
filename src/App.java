@@ -1,8 +1,6 @@
 //import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.List;
-import java.util.Map;
 
 
 public class App {
@@ -12,9 +10,14 @@ public class App {
      */
     public static void main(String[] args) throws Exception {
 
-        final String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
-        //final String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/NASA-APOD.json";
-        //final String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularTVs.json";
+
+        API api = API.NASA_APOD;
+
+        final String url = api.getUrl();
+        var extrator = api.getExtrator();
+
+        //final String url = "";
+        //var extrator = new ExtratorDeConteudoDaNasa();
 
         var http = new ClienteHttp();
         String json = http.buscaDados(url);
@@ -22,7 +25,6 @@ public class App {
         GeradoraDeFigurinhas geradora = new GeradoraDeFigurinhas();
 
 
-        var extrator = new ExtratorDeConteudoDoIMDB();
         var conteudos = extrator.extraiConteudos(json);
 
 
@@ -30,14 +32,16 @@ public class App {
 
             Conteudo conteudo = conteudos.get(i);
 
-            InputStream inputStream = new URL(conteudo.getUrlDaImagem()).openStream();
-            String nomeArquivo = "saida/" + conteudo.getTitulo() + ".png";
+            InputStream inputStream = new URL(conteudo.urlDaImagem()).openStream();
+            String nomeArquivo = "saida/" + conteudo.titulo() + ".png";
 
             geradora.cria(inputStream, nomeArquivo);
 
-            System.out.println(conteudo.getTitulo());
+            System.out.println(conteudo.titulo());
             System.out.println();
+
         }    
+
     }
 
 }

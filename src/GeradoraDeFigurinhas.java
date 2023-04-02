@@ -11,17 +11,6 @@ public class GeradoraDeFigurinhas  {
     
     public void cria(InputStream inputStream, String nomeArquivo) throws Exception {
 
-
-        // leitura da image
-        
-        // cria a imagem em memória e com transparência e tamanho novo
-        //BufferedImage imagemOriginal = ImageIO.read(new File("entrada/filme.jpg"));
-        //InputStream inputStream = new FileInputStream(new File("entrada/filme.jpg"));
-        //InputStream inputStream = 
-        //new 
-        //URL("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies_10.jpg")
-        //.openStream();
-
         BufferedImage imagemOriginal = ImageIO.read(inputStream);
         int largura = imagemOriginal.getWidth();
         int altura = imagemOriginal.getHeight();
@@ -47,18 +36,6 @@ public class GeradoraDeFigurinhas  {
 
     }
 
-    /*
-    public static void ma in(String[] args) throws Exception {
-
-        var geradora = new GeradoraDeFigurinhas();
-        InputStream inputStream = 
-        new 
-        URL("https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies_10.jpg")
-        .openStream();
-
-        geradora.cria(inputStream, "saida/figurinha.jpg");
-    }
-     */
 
     public GeradoraDeFigurinhas() {
     }

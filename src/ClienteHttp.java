@@ -7,7 +7,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 
 public class ClienteHttp {
     
-    public String buscaDados(String url) {
+    public String buscaDados(String url) throws ClienteHttpException {
 
         try {
 
@@ -18,14 +18,13 @@ public class ClienteHttp {
                .build();
             HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
             String body = response.body();
-            System.out.println(body);
 
             return body;
     
     
 
         } catch (IOException | InterruptedException ex) {
-            throw new RuntimeException(ex);
+            throw new ClienteHttpException("Erro ao consultar a url");
 
         }
 
